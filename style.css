@@ -1,0 +1,26 @@
+body {
+    display: flex;
+    justify-content: center;
+}
+
+#outmostContainer {
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    min-width: 360px;
+    min-height: 540px;
+    width: 360px;
+    height: 540px;
+    background-color: darkslategray;
+    gap: 20px;
+}
+
+#buttons {
+
+}
+
+.screenDiv {
+    background-color: blue;
+    width: 300px;
+    height: 100px;
+}
