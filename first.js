@@ -9,32 +9,51 @@ let buttonText = ["AC", "+/-", "%", "/",
 for (let i=1; i<=19; i++) {
     let createBtn = document.createElement('button');
     createBtn.id = 'buttons';
-    createBtn.textContent= 'button ' + i;
+    createBtn.textContent= buttonText[i-1];
     createBtn.style.width= '65px';
     createBtn.style.height = '65px';
     outmostContainer.appendChild(createBtn);
     createBtn.style.backgroundColor = 'yellow';
-    writeSymbols(createBtn);
+
+     if (createBtn.textContent === '0') {
+        createBtn.style.width = '130px';
+    }     
 }
 
-let btn = document.querySelector("button");
-/* let zeroBtn = document.querySelector("button:nth-child(18)");
-zeroBtn.textContent = 0;  */
-
-
-
-function writeSymbols (symbol) {
-
-for (let i=0; i<20; i++) {
-    let btnSymbols = document.createElement('');
-    btnSymbols.querySelector(`button:nth-child(${i})`);
-    
-    btnSymbols.style.textContent = buttonText[i];
-    return btnSymbols;
-}
+function add (num1,num2) {
+    return num1+num2;
 }
 
-// zeroBtn.style.width = '130px';
+function substract (num1,num2) {
+    return num1-num2;
+}
+
+function multiply (num1,num2) {
+    return num1*num2;
+}
+
+function divide (num1,num2) {
+    return num1/num2;
+}
+
+function operate (operator, num1, num2) {
+    if(operator === '+') add(num1,num2)
+    if(operator === '-') add(num1,num2)
+    if(operator === 'x') add(num1,num2)
+    if(operator === '/') add(num1,num2)
+
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
