@@ -5,6 +5,11 @@ let buttonText = ["AC", "+/-", "%", "/",
                 "5", "6", "-", "1","2",
                 "3", "+", "0", ",", "=",];
 
+ let buttonValue = ["AC", "+/-", "%", "/",
+                7, 8, 9 ,"x", 4,
+               5, 6, "-", 1 , 2,
+               3, "+", "0", ",", "=",];                
+
 let operatorsArr = ["+/-", "%", "/", "x", "-", "+",];
 
 // create buttons for calculator
@@ -65,6 +70,11 @@ function operate (operator, num1, num2) {
 let screenDiv = document.getElementById('screenDiv');
 
  function displayFunc (e) {
+
+        screenDiv.textContent += e.target.name;
+        
+
+
 
    
         
