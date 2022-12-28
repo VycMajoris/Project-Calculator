@@ -30,31 +30,45 @@ for (let i=1; i<=19; i++) {
 
 }
 
+let currentValue = 0;    
+
 function add (num1,num2) {
     //screenDiv.textContent = (num1 + num2);
-    console.log('add: ' + (num1+ num2));
+    let added = num1 + num2;
+    if(!isNaN(added)) {
+        currentValue = added;
+        screenDiv.textContent = currentValue;
+    }
+    
+    /* if(result === NaN) console.log(num2);
+    else console.log(result); */
+    //console.log('add: ' + num1);
 }
 
 function subtract (num1,num2) {
     //screenDiv.textContent = num1 - num2;
-    console.log('subtract: ' + (num1-num2));
-    return num1-num2;
+    let result = num1 - num2;
+    if(!isNaN(result)) screenDiv.textContent = result;
 }
 
 function multiply (num1,num2) {
-    screenDiv.textContent = num1 * num2;
+    let result = num1 * num2;
+    if(!isNaN(result)) screenDiv.textContent = result;
 }
 
 function divide (num1,num2) {
-    screenDiv.textContent = num1 / num2;
+    let result = num1 / num2;
+    if(!isNaN(result)) screenDiv.textContent = result;
 }
 
 function percent (num1) {
-    screenDiv.textContent = num1 / 100;
+    let result = num1 / 100;
+    if(!isNaN(result)) screenDiv.textContent = result;
 }
 
 function changeSign (num1) {
-    screenDiv.textContent = -num1;
+    let result = -num1;
+    if(!isNaN(result)) screenDiv.textContent = result;
 }
 
 function equalButton (result) {
@@ -114,15 +128,19 @@ function extractNumbers (textOnCalcScreen) {
             //console.log('screenDiv.textContent is ' + textOnCalcScreen);
 
             let arrayFromDisplay = textOnCalcScreen.split('');
+            //index of operator
+            
             //console.log('arrayFromDisplay is ' + arrayFromDisplay);
             // find the index of first non-numerical character
             let indexOfOperator = textOnCalcScreen.search(/[^0-9]/);
+            let operator = arrayFromDisplay[indexOfOperator];
             //console.log('indexOfOperator is ' + indexOfOperator);
             /* console.log(arrayFromDisplay);
             console.log(indexOfOperator); */
 
             let stringFromArr1 = '';
             for (i=0; i<indexOfOperator; i++) {
+                
                 stringFromArr1 += arrayFromDisplay[i];
             }
             //console.log('stringFromArr1 is ' + stringFromArr1);
@@ -138,7 +156,7 @@ function extractNumbers (textOnCalcScreen) {
             let rightNum = +stringFromArr2;
             //console.log('leftNum is ' + leftNum);
 
-            let operator = arrayFromDisplay[indexOfOperator];
+            
             let numsAndOperator = [leftNum, rightNum, operator];
 
             //console.log(leftNum+rightNum);
@@ -149,12 +167,12 @@ function extractNumbers (textOnCalcScreen) {
 
 function detectOperator (calcArr) {
 
-    if(calcArr[2] === '+') add(calcArr[0], calcArr[1]);
-    if(calcArr[2] === '-') subtract(calcArr[0], calcArr[1]);
-    if(calcArr[2] === 'x') multiply(calcArr[0], calcArr[1]);
-    if(calcArr[2] === '/') divide(calcArr[0], calcArr[1]);
-    if(calcArr[2] === '%') percent(calcArr[0], calcArr[1]);
-    if(calcArr[2] === '+/-') changeSign(calcArr[0], calcArr[1]);
+    if(calcArr[2] === '+') {add(calcArr[0], calcArr[1]);}
+    else if(calcArr[2] === '-') {subtract(calcArr[0], calcArr[1]);}
+    else if(calcArr[2] === 'x') {multiply(calcArr[0], calcArr[1]);}
+    else if(calcArr[2] === '/') {divide(calcArr[0], calcArr[1]);}
+    else if(calcArr[2] === '%') {percent(calcArr[0], calcArr[1]);}
+    else if(calcArr[2] === '+/-') {changeSign(calcArr[0], calcArr[1]);}
 
 }
       
