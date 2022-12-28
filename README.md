@@ -46,3 +46,25 @@ Extra Credit
 * Add a “backspace” button, so the user can undo if they click the wrong number.
 
 * Add keyboard support! You might run into an issue where keys such as (/) might cause you some trouble. Read the MDN documentation for event.preventDefault to help solve this problem.
+
+
+// check if the button pressed is a number
+        if(Number.isFinite(convertedNumber)) {
+            screenDiv.textContent += convertedNumber;
+            leftNum = Number(screenDiv.textContent);
+            //console.log("leftNum: " + leftNum + " total: " + total);
+            
+        } else if(operatorsArr.includes(e.target.name)) {
+            
+            
+            
+        }
+
+            total += leftNum;
+            leftNum = 0;
+            screenDiv.textContent = '';
+            screenDiv.textContent = total + ' ' + e.target.name + ' ';
+             console.log(screenDiv.textContent);
+             rightNum = Number(screenDiv.textContent.substring((screenDiv.textContent.indexOf('+')) + 2));
+            console.log(screenDiv.textContent.substring((screenDiv.textContent.indexOf('+')) + 2));
+            screenDiv.textContent = add(leftNum, rightNum);

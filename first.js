@@ -26,27 +26,28 @@ for (let i=1; i<=19; i++) {
 }
 
 function add (num1,num2) {
-    return num1+num2;
+    screenDiv.textContent = num1+ num2;
+    console.log('add: ' + (num1+ num2));
 }
 
 function substract (num1,num2) {
-    return num1-num2;
+    screenDiv.textContent = num1 - num2;
 }
 
 function multiply (num1,num2) {
-    return num1*num2;
+    screenDiv.textContent = num1 * num2;
 }
 
 function divide (num1,num2) {
-    return num1/num2;
+    screenDiv.textContent = num1 / num2;
 }
 
-function percent (num) {
-    return num/100;
+function percent (num1) {
+    screenDiv.textContent = num1 / 100;
 }
 
-function changeSign (num) {
-    return -num;
+function changeSign (num1) {
+    screenDiv.textContent = -num1;
 }
 // deciding which function to use depending on the operator type
 function operate (operator, num1, num2) {
@@ -63,34 +64,90 @@ function operate (operator, num1, num2) {
 // select screenDiv
 let screenDiv = document.getElementById('screenDiv');
 
-let currentCalcResult = 0;
-
  function displayFunc (e) {
 
-    // TODO: If the pressed button is a number, add the button to whatever is on screen.
-    //       Else, use the selected operator to calculate.
-        let leftNum = 0;
-        let rightNum = 0;
+   
+        
         let convertedNumber = Number(e.target.name);
-        // check if the pressed button is a number
-        if(Number.isFinite(convertedNumber)) {
-            screenDiv.textContent += convertedNumber;
+
+        if(e.target.name !== '=') {
+            if (!(operatorsArr.some(char => screenDiv.textContent.includes(char)))){
+                screenDiv.textContent += e.target.name; 
+            }
+                else if((operatorsArr.some(char => screenDiv.textContent.includes(char))) && ((operatorsArr.some(char => e.target.name.includes(char)))) ) {
+                screenDiv.textContent = screenDiv.textContent;
+                } 
+                    
+                else {screenDiv.textContent += e.target.name;}
+                
+                
+            }
+
+            extractNumbers(screenDiv.textContent);          
+            return screenDiv.textContent;
+
             
             
-        } else if(operatorsArr.includes(e.target.name)) {
-            leftNum = Number(screenDiv.textContent);
-            //screenDiv.textContent = '';
-            screenDiv.textContent = leftNum+ ' ' + e.target.name + ' ';
-            // console.log(screenDiv.textContent);
-            rightNum = Number(screenDiv.textContent.substring((screenDiv.textContent.indexOf('+')) + 2));
-            console.log(leftNum, rightNum);
-            screenDiv.textContent = add(leftNum, rightNum); 
+            
             
         }
+
+// extract numbers from the format: (abc+xyz)
+function extractNumbers (textOnCalcScreen) {
+
+            //console.log('screenDiv.textContent is ' + textOnCalcScreen);
+
+            let arrayFromDisplay = textOnCalcScreen.split('');
+            //console.log('arrayFromDisplay is ' + arrayFromDisplay);
+            // find the index of first non-numerical character
+            let indexOfOperator = textOnCalcScreen.search(/[^0-9]/);
+            //console.log('indexOfOperator is ' + indexOfOperator);
+            /* console.log(arrayFromDisplay);
+            console.log(indexOfOperator); */
+
+            let stringFromArr1 = '';
+            for (i=0; i<indexOfOperator; i++) {
+                stringFromArr1 += arrayFromDisplay[i];
+            }
+            //console.log('stringFromArr1 is ' + stringFromArr1);
+            let leftNum = +stringFromArr1;
+            //console.log('leftNum is ' + leftNum);
+
+
+            let stringFromArr2 = '';
+            for (i=indexOfOperator; i<arrayFromDisplay.length; i++) {
+                stringFromArr2 += arrayFromDisplay[i];
+            }
+            //console.log('stringFromArr1 is ' + stringFromArr1);
+            let rightNum = +stringFromArr2;
+            //console.log('leftNum is ' + leftNum);
+
+            let operator = arrayFromDisplay[indexOfOperator];
+            let numsAndOperator = [leftNum, rightNum, operator];
+
+            //console.log(leftNum+rightNum);
+            //detectOperator(numsAndOperator);
+
+
+}
+
+function detectOperator (calcArr) {
+
+    if(calcArr[2] === '+') add(calcArr[0], calcArr[1]);
+    if(calcArr[2] === '-') substract(calcArr[0], calcArr[1]);
+    if(calcArr[2] === 'x') multiply(calcArr[0], calcArr[1]);
+    if(calcArr[2] === '/') divide(calcArr[0], calcArr[1]);
+    if(calcArr[2] === '%') percent(calcArr[0], calcArr[1]);
+    if(calcArr[2] === '+/-') changeSign(calcArr[0], calcArr[1]);
+
+}
+      
+
+
        
     
     
-}
+
 
 
 
