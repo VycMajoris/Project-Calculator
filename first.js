@@ -22,16 +22,23 @@ for (let i=1; i<=19; i++) {
     createBtn.addEventListener ('click', displayFunc);
      if (createBtn.textContent === '0') {
         createBtn.style.width = '130px';
-    }     
+    }  
+    if (createBtn.textContent === '=') {
+        createBtn.addEventListener('click', equalButton);
+    }
+
+
 }
 
 function add (num1,num2) {
-    screenDiv.textContent = num1+ num2;
+    //screenDiv.textContent = (num1 + num2);
     console.log('add: ' + (num1+ num2));
 }
 
-function substract (num1,num2) {
-    screenDiv.textContent = num1 - num2;
+function subtract (num1,num2) {
+    //screenDiv.textContent = num1 - num2;
+    console.log('subtract: ' + (num1-num2));
+    return num1-num2;
 }
 
 function multiply (num1,num2) {
@@ -49,6 +56,13 @@ function percent (num1) {
 function changeSign (num1) {
     screenDiv.textContent = -num1;
 }
+
+function equalButton (result) {
+    //screenDiv.textContent = num1 - num2;
+    console.log('sdf');
+}
+
+
 // deciding which function to use depending on the operator type
 function operate (operator, num1, num2) {
     if(operator === '+') add(num1,num2)
@@ -92,6 +106,8 @@ let screenDiv = document.getElementById('screenDiv');
             
         }
 
+
+
 // extract numbers from the format: (abc+xyz)
 function extractNumbers (textOnCalcScreen) {
 
@@ -126,7 +142,7 @@ function extractNumbers (textOnCalcScreen) {
             let numsAndOperator = [leftNum, rightNum, operator];
 
             //console.log(leftNum+rightNum);
-            //detectOperator(numsAndOperator);
+            detectOperator(numsAndOperator);
 
 
 }
@@ -134,7 +150,7 @@ function extractNumbers (textOnCalcScreen) {
 function detectOperator (calcArr) {
 
     if(calcArr[2] === '+') add(calcArr[0], calcArr[1]);
-    if(calcArr[2] === '-') substract(calcArr[0], calcArr[1]);
+    if(calcArr[2] === '-') subtract(calcArr[0], calcArr[1]);
     if(calcArr[2] === 'x') multiply(calcArr[0], calcArr[1]);
     if(calcArr[2] === '/') divide(calcArr[0], calcArr[1]);
     if(calcArr[2] === '%') percent(calcArr[0], calcArr[1]);
