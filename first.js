@@ -10,7 +10,9 @@ let buttonText = ["AC", "+/-", "%", "/",
                5, 6, "-", 1 , 2,
                3, "+", "0", ",", "=",];                
 
-let operatorsArr = ["+/-", "%", "/", "x", "-", "+",];
+let operatorsArr = ["+/-", "%", "/", "x", "-", "+", "="];
+
+let operators = "+/-%x";
 
 // create buttons for calculator
 for (let i=1; i<=19; i++) {
@@ -31,7 +33,7 @@ for (let i=1; i<=19; i++) {
 }
 
 function add (num1,num2) {
-    screenDiv.textContent = num1+ num2;
+    // screenDiv.textContent = num1 + num2;
     console.log('add: ' + (num1+ num2));
 }
 
@@ -63,7 +65,9 @@ function operate (operator, num1, num2) {
 
 }
  
-
+let currentNum = '';
+let leftNum = '';
+let currentOperator;
 
 
 // select screenDiv
@@ -71,8 +75,35 @@ let screenDiv = document.getElementById('screenDiv');
 
  function displayFunc (e) {
 
+    if(!(operatorsArr.some( value => e.target.name.includes(value)))) {
         screenDiv.textContent += e.target.name;
+        leftNum += e.target.name;
+    }
+    
+
+    if(operatorsArr.some( value => e.target.name.includes(value))) {
+        if(screenDiv.textContent === '') {
+        screenDiv.textContent = '';
+    }
+        //operator secildiginde ekran bos degilse ve ekranda bir operator varsa:   
+        if (screenDiv.textContent !== '' && operatorsArr.some( value => screenDiv.textContent.includes(value))){
+    
+        //leftNum = e.target.name;
+        screenDiv.textContent += e.target.name;
+        }
+  
+} 
+
+
+console.log(leftNum)
+     
+    
+}
         
+    
+    
+    
+    
 
 
 
@@ -84,7 +115,7 @@ let screenDiv = document.getElementById('screenDiv');
             
             
             
-        }
+        
 
   
 
