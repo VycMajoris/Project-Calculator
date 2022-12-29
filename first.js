@@ -69,6 +69,7 @@ function subtract (number1,number2) {
 }
 function multiply (number1,number2) {
     let result = number1 * number2;
+    if (number2 === '') multiply (number1,number2);
     currentNum = Number(result);
     console.log('result: ' + result);
     screenDiv.textContent = result;
