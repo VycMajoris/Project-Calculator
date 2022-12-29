@@ -7,12 +7,16 @@ body {
     display: flex;
     flex-wrap: wrap;
     box-sizing: border-box;
-    min-width: 360px;
-    min-height: 540px;
-    width: 360px;
-    height: 540px;
-    background-color: darkslategray;
-    gap: 20px;
+    justify-content: center;
+    align-items: flex-end;
+    min-width: 320px;
+    min-height: 520px;
+    width: 340px;
+    height: 570px;
+    background-color: black;
+    gap: 12px;
+    padding-bottom: 0;
+    padding-bottom: 10px;
 }
 
 #buttons:hover {
@@ -21,9 +25,67 @@ body {
 
 #screenDiv {
     color: white;
-    background-color: blue;
-    width: 300px;
+    background-color: black;
+    width: 340px;
     height: 100px;
     display: flex;
     justify-content: flex-end;
+    margin: 10px;
+
+}
+
+#buttons {
+    background-color: rgb(51,51,51);
+    border-radius : 35px;
+    font-size: 25px;
+    color: white;
+    padding-top: 5px;
+    margin-bottom: 5px;
+    border-style: none;
+}
+
+button:hover {
+    background-color: blue;
+}
+
+#outmostContainer > :nth-child(n+2):nth-child(-n+4) {
+    background-color: rgb(154,154,154);
+    color: black;
+}
+
+#outmostContainer > :nth-child(n+2):nth-child(-n+4):active {
+    background-color: rgb(217, 8, 8);
+    color: black;
+}
+
+
+#outmostContainer > :nth-child(4n+1) {
+    background-color: rgb(254,149,0);
+}
+
+#outmostContainer > :nth-child(4n+1):active {
+    background-color: rgb(217, 8, 8);
+}
+
+#outmostContainer > :nth-child(1) {
+    background-color: black;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    font-weight:lighter;
+}
+
+#outmostContainer > :nth-child(1) {
+    background-color: black;
+    font-size: 60px;
+    font-weight: 100;
+}
+
+#outmostContainer > :nth-last-child(4) {
+    margin-left: 10px;
+}
+
+#outmostContainer > :nth-last-child(1) {
+    background-color: black;
+    height: 20px;
 }
