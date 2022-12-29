@@ -11,8 +11,6 @@ let buttonText = ["AC", "+/-", "%", "/",
 
 let operatorsArr = ["+/-", "%", "/", "x", "-", "+", "="];
 
-let operators = "+/-%x";
-
 // create buttons for numbers
 for (let i=1; i<=19; i++) {
     let createBtn = document.createElement('button');
@@ -55,46 +53,58 @@ function add (number1,number2) {
     let result = number1 + number2;
     currentNum = Number(result);
     console.log('result: ' + result);
-    
-    
-    console.log("add func here num1: " + num1);
-    console.log("add func here num2: " + num2);
     screenDiv.textContent = result;
-    //num1 = currentNum;
-    num2= '';
-    
+    num1 = currentNum;
+    num2= '';    
     return result;
 }
-
 function subtract (number1,number2) {
-    let result = number1 - Number(number2);
-    
+    let result = number1 - number2;
     currentNum = Number(result);
-    console.log('result: ' + result);    
-    console.log("add func here num1: " + num1);
-    console.log("add func here num2: " + num2);
+    console.log('result: ' + result);
     screenDiv.textContent = result;
-    //num1 = currentNum;
-    num2= '';
-    
+    num1 = currentNum;
+    num2= '';    
     return result;
 }
-
-function multiply (num1,num2) {
-    screenDiv.textContent = num1 * num2;
+function multiply (number1,number2) {
+    let result = number1 * number2;
+    currentNum = Number(result);
+    console.log('result: ' + result);
+    screenDiv.textContent = result;
+    num1 = currentNum;
+    num2= '';    
+    return result;
 }
-
-function divide (num1,num2) {
-    screenDiv.textContent = num1 / num2;
+function divide (number1,number2) {
+    let result = number1 / number2;
+    currentNum = Number(result);
+    console.log('result: ' + result);
+    screenDiv.textContent = result;
+    num1 = currentNum;
+    num2= '';    
+    return result;
 }
-
-function percent (num1) {
-    screenDiv.textContent = num1 / 100;
+function percent (number1) {
+    let result = number1 / 100;
+    currentNum = Number(result);
+    console.log('result: ' + result);
+    screenDiv.textContent = result;
+    num1 = currentNum;
+    num2= '';    
+    return result;
 }
+ function changeSign (number1) {
+    let result = number1 * -1;
+    currentNum = -1 * Number(result);
+    console.log('result: ' + result);
+    screenDiv.textContent = result;
+    num1 = currentNum;
+    num2= '';    
+    return result;  
+} 
 
-function changeSign (num1) {
-    screenDiv.textContent = -num1;
-}
+
 // deciding which function to use depending on the operator type
 function operate (operator, num1, num2) {
     if(operator === '+') add(num1,num2)
@@ -103,97 +113,43 @@ function operate (operator, num1, num2) {
     if(operator === '/') divide(num1,num2)
 
 }
- 
-
-
 
 // select screenDiv
 let screenDiv = document.getElementById('screenDiv');
 
  function displayFunc (e) {
-    let result = 0;
+
+    e.target.style.backgroundColor = 'white';    
+    if (currentOperator === '+') add(num1, num2);    
+    if (currentOperator === '-') subtract(num1, num2);
+    if (currentOperator === 'x') multiply(num1, num2);
+    if (currentOperator === '/') divide(num1, num2);
+    if (currentOperator === '%') percent(num1);
+    if (currentOperator === '+/-') changeSign(num1);
+    if (currentOperator === 'AC') changeSign(num1);
     currentOperator = e.target.name;
-    e.target.style.backgroundColor = 'white';
-
-    
-    
-    if (currentOperator === '+') {
-        add(num1, num2);
-        
-    }
-    
-    if (currentOperator === '-') {
-        subtract(num1, num2);
-        
-    }
-
-    
-    
-    
-    
-    num1 = currentNum;
-    
-    console.log("operator is " + currentOperator);
-    console.log("displayFunc here num1: " + num1);
-    console.log("displayFunc here num2: " + num2);
-
-
-
-
-
-    /* if(!(operatorsArr.some( value => e.target.name.includes(value)))) {
-        screenDiv.textContent += e.target.name;
-        num1 += e.target.name;
-    }
-    
-
-    if(operatorsArr.some( value => e.target.name.includes(value))) {
-        if(screenDiv.textContent === '') {
-        screenDiv.textContent = '';
-    }
-        //operator secildiginde ekran bos degilse ve ekranda bir operator varsa:   
-        if (screenDiv.textContent !== '' && operatorsArr.some( value => screenDiv.textContent.includes(value))){
-    
-        //num1 = e.target.name;
-        screenDiv.textContent += e.target.name;
-        }
-  
-} 
-
-
-console.log(num1) */
-     
-    
 }
-        
-    
-    
+
 function numEventFunc (e) {
 
     if(currentOperator == undefined) {
         screenDiv.textContent += e.target.name;
         num1 = Number(screenDiv.textContent);
-        
     } else {
-        if(num2 === '') screenDiv.textContent = '';
-        
-        screenDiv.textContent += e.target.name;
+        if(num2 === '') screenDiv.textContent = '';        
+        screenDiv.textContent += e.target.name;        
         num2= Number(screenDiv.textContent);
     }
-
-
-    
-
-   
-   
-   console.log('num1: ' + num1);
-   console.log('num2: ' + num2);
 }
-
 function clearButtonFunc () {
-    console.log("clear button event function called");
+    num1 = '';
+    num2 = '';
+    currentOperator = '';
+    screenDiv.textContent = '';
 }
     
+
+// TODO: Pressing an operator twice makes result 0.
 
 
 
