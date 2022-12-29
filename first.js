@@ -16,6 +16,7 @@ for (let i=1; i<=19; i++) {
     let createBtn = document.createElement('button');
     let createNumBtn = document.createElement('button');
     let clearButton = document.createElement('button');
+    let equalButton = document.createElement('button');
     // name every button same as its text content
     createBtn.name = buttonText[i-1];
     createBtn.id = 'buttons';
@@ -38,6 +39,10 @@ for (let i=1; i<=19; i++) {
     if(createBtn.name === 'AC') {
         clearButton = createBtn;
         clearButton.addEventListener('click', clearButtonFunc);
+    }
+    if(createBtn.name === '=') {
+        equalButton = createBtn;
+        equalButton.addEventListener('click', equalButtonFunc);
     }
 }
 
@@ -147,6 +152,10 @@ function clearButtonFunc () {
     num2 = '';
     currentOperator = '';
     screenDiv.textContent = '';
+}
+
+function equalButtonFunc () {
+    displayFunc(); 
 }
     
 
